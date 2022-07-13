@@ -2,7 +2,8 @@
 
 // Determine the minimum number of bribes that took place to get to a given queue order. Print the number of bribes, or, if anyone has bribed more than two people, print Too chaotic.
 
-// NOTE: this solution times out for large q inputs
+// unsolved: TOO SLOW
+
 function minimumBribes(q) {
   // Write your code here
   if (q.length <= 1) return 0;
@@ -11,11 +12,11 @@ function minimumBribes(q) {
     chaotic = false;
   for (let i = 0; i < q.length; i++) {
     if (q[i] !== i + 1) {
-      //   if (q[i] !== i + 2 && q[i] !== i + 3) {
-      //     // minor optimization
-      //     chaotic = true;
-      //     break;
-      //   }
+      if (q[i] !== i + 2 && q[i] !== i + 3) {
+        // minor optimization
+        chaotic = true;
+        break;
+      }
       const shift = q.slice(i, q.indexOf(i + 1)); // these items need to update in swapped
       shift.forEach((x) => {
         swapped[x] ? swapped[x]++ : (swapped[x] = 1);
